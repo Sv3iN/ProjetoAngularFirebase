@@ -13,16 +13,17 @@
         Inserir funcionario
       </ion-item>
     <ion-list>
-      <ion-input>Sobrenome</ion-input>
-      <ion-input>Nome</ion-input>
-      <ion-input>Cargo</ion-input>
-      <ion-input>Data de nascimento</ion-input>
-      <ion-input>Endereço</ion-input>
-      <ion-input>Cidade</ion-input>
-      <ion-input>CEP</ion-input>
-      <ion-input>País</ion-input>
-      <ion-input>Fone</ion-input>
-      <ion-input>Salário</ion-input>
+      <ion-input [(ngModel)]="sobrenomeIP">Sobrenome</ion-input>
+      <ion-input [(ngModel)]="nomeIP">Nome</ion-input>
+      <ion-input [(ngModel)]="cargoIP">Cargo</ion-input>
+      <ion-input [(ngModel)]="datanascIP">Data de nascimento</ion-input>
+      <ion-input [(ngModel)]="enderecoIP">Endereço</ion-input>
+      <ion-input [(ngModel)]="cidadeIP">Cidade</ion-input>
+      <ion-input [(ngModel)]="cepIP">CEP</ion-input>
+      <ion-input [(ngModel)]="paisIP">País</ion-input>
+      <ion-input [(ngModel)]="foneIP">Fone</ion-input>
+      <ion-input [(ngModel)]="salarioIP">Salário</ion-input>
+      <ion-button>Enviar</ion-button>
     </ion-list>
     </ion-col>
     <ion-col>
@@ -36,6 +37,7 @@
                 {{funcionario.Nome}} - {{ funcionario.Cargo }}
               </ion-label>
               <ion-icon name="trash-outline" (click)="remover(funcionario.CodFun)"></ion-icon>
+              <ion-icon name="create-outline" (click)="atualizar(funcionario.CodFun)"></ion-icon>
             </ion-item>
           </ng-container>
       </ion-list>

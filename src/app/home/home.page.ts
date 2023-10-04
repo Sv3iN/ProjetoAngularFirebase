@@ -29,11 +29,62 @@ export class HomePage {
     })
   }
 
+sobrenomeIP: string=''
+nomeIP: string=''
+cargoIP: string=''
+datanascIP: string=''
+enderecoIP: string=''
+cidadeIP: string=''
+cepIP: string=''
+paisIP: string=''
+foneIP: string=''
+salarioIP: string=''
+
+async enviarDados(){
+  this.isLoading = true;
+
+  const dados = {
+    'sobrenome' : this.sobrenomeIP,
+    'nome' : this.nomeIP,
+    'cargo' : this.cargoIP,
+    'datanasc' : this.datanascIP,
+    'endereco' : this.enderecoIP,
+    'cidade' : this.cidadeIP,
+    'cep' : this.cepIP,
+    'pais' : this.paisIP,
+    'fone' : this.foneIP,
+    'salario' : this.salarioIP,
+  }
+  const body = JSON.stringify(dados);
+  fetch('http://localhost/API_fatec/funcionario/inserir_funcionario.php',
+  {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: body
+  }
+)
+.then(response => response.json())
+.then(response => {
+  console.log(response);
+  this.getFuncionarios();
+})
+.catch(erro => {
+  console.log(erro);
+})
+.finally(()=>{
+  this.isLoading = false;
+  
+})
+}
+
+
   remover(id: any){
     this.isLoading = true;
     fetch('http://localhost/API_fatec/funcionario/remover_funcionario.php',
 			{
-			  method: 'POST',
+			  method: 'post',
 			  headers: {
 			    'Content-Type': 'application/json',
 			  },
@@ -53,5 +104,31 @@ export class HomePage {
       
     })
   }
+
+  atualizar(id: any){
+    this.isLoading = true;
+    fetch('http://localhost/API_fatec/funcionario/remover_funcionario.php',
+			{
+			  method: 'post',
+			  headers: {
+			    'Content-Type': 'application/json',
+			  },
+			  body: JSON.stringify({ CodFun: id })
+			}
+		)
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      this.getFuncionarios();
+    })
+    .catch(erro => {
+      console.log(erro);
+    })
+    .finally(()=>{
+      this.isLoading = false;
+      
+    })
+  }
+  
 
 }
